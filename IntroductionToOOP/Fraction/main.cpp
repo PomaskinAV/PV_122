@@ -107,7 +107,7 @@ public:
 		int buffer = numerator;
 		numerator = denominator;
 		denominator = buffer;
-		return* this;
+		return *this;
 	}
 	Fraction& operator*=(Fraction other)
 	{
@@ -115,6 +115,14 @@ public:
 		other.to_improper();
 		this->numerator *= other.numerator;
 		this->denominator *= other.denominator;
+		return this->to_proper();
+	}
+	Fraction& operator/=(Fraction other)
+	{
+		this->to_improper();
+		other.to_improper();
+		this->numerator *= other.denominator;
+		this->denominator *= other.numerator;
 		return this->to_proper();
 	}
 
@@ -222,14 +230,16 @@ void main()
 	int b = 3;
 	int c = a * b;
 
-	Fraction A(1, 2, 3);
-	Fraction B(2, 4, 5);
+	Fraction A(2, 3);
+	Fraction B(2, 5);
 	cout << A << endl;
 	cout << B << endl;
 	Fraction C = A * B;
 	cout << C << endl;
 	cout << A/B << endl;
 
-	A *= B;
+	/*A *= B;
+	cout << A << endl;*/
+	A /= B;
 	cout << A << endl;
 }
