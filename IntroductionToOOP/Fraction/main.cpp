@@ -125,6 +125,22 @@ public:
 		this->denominator *= other.numerator;
 		return this->to_proper();
 	}
+	Fraction operator+=(Fraction other)
+	{
+		this->to_improper();
+		other.to_improper();
+		this->numerator = numerator * other.denominator + this->denominator * other.numerator;
+		this->denominator*= other.denominator;
+		return this->to_proper();
+	}
+	Fraction operator-=(Fraction other)
+	{
+		this->to_improper();
+		other.to_improper();
+		this->numerator = numerator * other.denominator - this->denominator * other.numerator;
+		this->denominator *= other.denominator;
+		return this->to_proper();
+	}
 
 	void reduce()
 	{
@@ -232,14 +248,18 @@ void main()
 
 	Fraction A(2, 3);
 	Fraction B(2, 5);
-	cout << A << endl;
+	/*cout << A << endl;
 	cout << B << endl;
 	Fraction C = A * B;
 	cout << C << endl;
-	cout << A/B << endl;
+	cout << A/B << endl;*/
 
 	/*A *= B;
 	cout << A << endl;*/
-	A /= B;
+	/*A /= B;
+	cout << A << endl;*/
+	/*A += B;
+	cout << A << endl;*/
+	A -= B;
 	cout << A << endl;
 }
